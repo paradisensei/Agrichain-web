@@ -7,8 +7,42 @@ class Partners extends React.Component {
     super(props);
 
     this.state = {
-      products: [0]
+      products: []
     }
+  }
+
+  componentWillMount() {
+    const { web3, ipfs } = this.props;
+
+    // Instantiate contract once web3 is provided.
+    const contractInfo = require('../properties/AgrichainInfo.json');
+    const contract = new web3.eth.Contract(contractInfo.abi, contractInfo.address);
+
+    // get all farmer's addresses
+    contract.methods.getFarmers().call((e, farmers) => {
+      // for each farmer get his/her products
+      farmers.forEach(f => {
+        contract.methods.getProductsCount(f).call((e, count) => {
+          for (let i = 0; i < count; i++) {
+            contract.methods.products(f, i).call((e, product) => {
+              const arr = this.state.products.slice();
+              //TODO fetch image from IPFS using hash
+              //TODO convert coordinates to real addresses using maps API
+              arr.push({
+                image: product[0],
+                latitude: product[1],
+                longitude: product[2],
+                price: product[3],
+                timestamp: product[4]
+              });
+              this.setState({
+                products: arr
+              });
+            })
+          }
+        })
+      })
+    });
   }
 
   render() {
@@ -19,11 +53,13 @@ class Partners extends React.Component {
         <h3>Organic products:</h3>
         <ul>
           {
-            this.state.products.map(p =>
-              <li>
-                <p>Image</p>
-                <p>Origin</p>
-                <p>Price</p>
+            this.state.products.map((p, i) =>
+              <li key={i}>
+                <p>{p.image}</p>
+                <p>{p.latitude}</p>
+                <p>{p.longitude}</p>
+                <p>{p.price}</p>
+                <p>{p.timestamp}</p>
                 <p>Link to current producer's other products</p>
                 <hr/>
               </li>
