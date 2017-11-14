@@ -51,12 +51,12 @@ class Partners extends React.Component {
   }
 
   render() {
-    let products;
+    let products = "";
 
     if (this.state.products.length > 0) {
       products = (
         <div style={{width: '100%'}}>
-          <h3>Organic products:</h3>
+          <h2>Organic products:</h2>
           <Grid container spacing={24}>
             {
               this.state.products.map((p, i) =>
@@ -69,7 +69,7 @@ class Partners extends React.Component {
     }
 
     return (
-      <div style={{width: '100%'}}>
+      <div>
         {products}
       </div>
     );

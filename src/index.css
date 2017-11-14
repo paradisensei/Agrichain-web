@@ -6,3 +6,13 @@
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+/* general layout */
+header{color: white;}
+.main-container{
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 10px;
+}
