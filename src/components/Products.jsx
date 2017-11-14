@@ -16,7 +16,7 @@ class Partners extends React.Component {
   }
 
   componentWillMount() {
-    const { web3, ipfs } = this.props;
+    const { web3 } = this.props;
 
     // Instantiate contract once web3 is provided.
     const contractInfo = require('../properties/AgrichainInfo.json');
@@ -77,8 +77,7 @@ class Partners extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  web3: state.web3.instance,
-  ipfs: state.ipfs.api
+  web3: state.web3.instance
 });
 
 export default connect(mapStateToProps)(Partners);
