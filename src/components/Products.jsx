@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Grid from 'material-ui/Grid';
+import ProductCard from './ProductCard.jsx'
+
 class Partners extends React.Component {
 
   constructor(props) {
@@ -49,28 +52,22 @@ class Partners extends React.Component {
     let products;
 
     if (this.state.products.length > 0) {
-      products = <div>
-        <h3>Organic products:</h3>
-        <ul>
-          {
-            this.state.products.map((p, i) =>
-              <li key={i}>
-                <p>{p.image}</p>
-                <p>{p.latitude}</p>
-                <p>{p.longitude}</p>
-                <p>{p.price}</p>
-                <p>{p.timestamp}</p>
-                <p>Link to current producer's other products</p>
-                <hr/>
-              </li>
-            )
-          }
-        </ul>
-      </div>
+      products = (
+        <div style={{width: '100%'}}>
+          <h3>Organic products:</h3>
+          <Grid container spacing={24}>
+            {
+              this.state.products.map((p, i) =>
+                <ProductCard key={i} details={p} />
+              )
+            }
+          </Grid>
+        </div>
+      );
     }
 
     return (
-      <div>
+      <div style={{width: '100%'}}>
         {products}
       </div>
     );
