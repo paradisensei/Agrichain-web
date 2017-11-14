@@ -34,6 +34,40 @@
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "image",
+          "type": "string"
+        },
+        {
+          "name": "latitude",
+          "type": "uint256"
+        },
+        {
+          "name": "longitude",
+          "type": "uint256"
+        },
+        {
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "newProduct",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -53,32 +87,6 @@
       "type": "function"
     },
     {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "image",
-          "type": "string"
-        },
-        {
-          "name": "latitude",
-          "type": "uint256"
-        },
-        {
-          "name": "longitude",
-          "type": "uint256"
-        },
-        {
-          "name": "price",
-          "type": "uint256"
-        }
-      ],
-      "name": "newProduct",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "constant": true,
       "inputs": [
         {
@@ -93,6 +101,10 @@
       "name": "products",
       "outputs": [
         {
+          "name": "title",
+          "type": "string"
+        },
+        {
           "name": "image",
           "type": "string"
         },
@@ -109,6 +121,10 @@
           "type": "uint256"
         },
         {
+          "name": "quantity",
+          "type": "uint256"
+        },
+        {
           "name": "timestamp",
           "type": "uint256"
         }
@@ -118,5 +134,5 @@
       "type": "function"
     }
   ],
-  "address": "0xE89E66FBdcf0ab9B1A0237F489CBF232c4cf1051"
+  "address": "0x28dd2FB0D7f5DcF51EE0626C2Cf801779578Aa38"
 }

@@ -11,10 +11,12 @@ contract Agrichain {
         @param timestamp - the exact time of product submission
     */
     struct Product {
+        string title;
         string image;
         uint latitude;
         uint longitude;
         uint price;
+        uint quantity;
         uint timestamp;
     }
 
@@ -39,20 +41,24 @@ contract Agrichain {
     }
 
     function newProduct(
+        string title,
         string image,
         uint latitude,
         uint longitude,
-        uint price
+        uint price,
+        uint quantity
     )
         public
     {
         // add farmer's address if new
         addFarmer(msg.sender);
         Product memory product = Product({
+            title: title,
             image: image,
             latitude: latitude,
             longitude: longitude,
             price: price,
+            quantity: quantity,
             timestamp: now
         });
         products[msg.sender].push(product);
@@ -66,9 +72,11 @@ contract Agrichain {
                 duplicate = true;
             }
         }
-        require(!duplicate);
 
-        farmers.push(farmer);
+        // if new farmer, save his/her address
+        if (!duplicate) {
+            farmers.push(farmer);
+        }
     }
 
 }

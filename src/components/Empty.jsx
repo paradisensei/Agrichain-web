@@ -6,6 +6,7 @@ import Img from 'react-image'
 import Logo from '../assets/logo.svg';
 import Screen from '../lib/screen';
 
+
 const Empty = ({ classes }) => (
   <div className={classes.main}>
     <Img src={Logo} className={`${classes.logo} rotatable`} alt="spinner" />

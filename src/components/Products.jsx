@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Grid from 'material-ui/Grid';
 import ProductCard from './ProductCard.jsx'
 
+
 class Partners extends React.Component {
 
   constructor(props) {
@@ -29,14 +30,15 @@ class Partners extends React.Component {
           for (let i = 0; i < count; i++) {
             contract.methods.products(f, i).call((e, product) => {
               const arr = this.state.products.slice();
-              //TODO fetch image from IPFS using hash
               //TODO convert coordinates to real addresses using maps API
               arr.push({
-                image: product[0],
-                latitude: product[1],
-                longitude: product[2],
+                title: product[0],
+                image: 'https://ipfs.io/ipfs/' + product[1],
+                latitude: product[2],
+                longitude: product[3],
                 price: product[3],
-                timestamp: product[4]
+                quantity: product[4],
+                timestamp: product[5]
               });
               this.setState({
                 products: arr
