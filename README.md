@@ -1,0 +1,1 @@
+1. Install IPFS and run 'ipfs daemon'

@@ -12,7 +12,7 @@
 /.idea
 
 # properties
-src/properties/properties.js
+backend/properties/properties.js
 
 # misc
 .DS_Store

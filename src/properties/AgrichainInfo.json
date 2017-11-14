@@ -34,40 +34,6 @@
       "type": "function"
     },
     {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "name": "image",
-          "type": "string"
-        },
-        {
-          "name": "latitude",
-          "type": "uint256"
-        },
-        {
-          "name": "longitude",
-          "type": "uint256"
-        },
-        {
-          "name": "price",
-          "type": "uint256"
-        },
-        {
-          "name": "quantity",
-          "type": "uint256"
-        }
-      ],
-      "name": "newProduct",
-      "outputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "constant": true,
       "inputs": [
         {
@@ -84,6 +50,48 @@
       ],
       "payable": false,
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "image",
+          "type": "string"
+        },
+        {
+          "name": "latitudeBase",
+          "type": "uint256"
+        },
+        {
+          "name": "latitudeDec",
+          "type": "uint256"
+        },
+        {
+          "name": "longitudeBase",
+          "type": "uint256"
+        },
+        {
+          "name": "longitudeDec",
+          "type": "uint256"
+        },
+        {
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "newProduct",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -109,11 +117,19 @@
           "type": "string"
         },
         {
-          "name": "latitude",
+          "name": "latitudeBase",
           "type": "uint256"
         },
         {
-          "name": "longitude",
+          "name": "latitudeDec",
+          "type": "uint256"
+        },
+        {
+          "name": "longitudeBase",
+          "type": "uint256"
+        },
+        {
+          "name": "longitudeDec",
           "type": "uint256"
         },
         {
@@ -134,5 +150,5 @@
       "type": "function"
     }
   ],
-  "address": "0x28dd2FB0D7f5DcF51EE0626C2Cf801779578Aa38"
+  "address": "0x3c57DB9EEc3c36A74e853BbdE878c5EdA056BF1c"
 }
