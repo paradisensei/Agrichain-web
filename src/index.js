@@ -15,12 +15,14 @@ import { Store, History } from 'store/index';
 import Main from './containers/Main';
 import Empty from './components/Empty';
 import Products from './components/Products';
+import Map from './components/Map';
 
 ReactDOM.render(
   <Provider store={Store}>
     <Router history={History}>
       <Route path='/' component={Main}>
         <IndexRoute component={Products}/>
+        <Route path='/map' component={Map}/>
         <Route path='*' component={Empty}/>
       </Route>
     </Router>
