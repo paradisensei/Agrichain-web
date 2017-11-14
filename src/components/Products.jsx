@@ -30,15 +30,17 @@ class Partners extends React.Component {
           for (let i = 0; i < count; i++) {
             contract.methods.products(f, i).call((e, product) => {
               const arr = this.state.products.slice();
-              //TODO convert coordinates to real addresses using maps API
+              // concatenate base & decimal coordinate's parts
+              const latitude = product[2] + '.' + product[3];
+              const longitude = product[4] + '.' + product[5];
               arr.push({
                 title: product[0],
                 image: 'https://ipfs.io/ipfs/' + product[1],
-                latitude: product[2],
-                longitude: product[3],
-                price: product[3],
-                quantity: product[4],
-                timestamp: product[5]
+                latitude: latitude,
+                longitude: longitude,
+                price: product[6],
+                quantity: product[7],
+                timestamp: product[8]
               });
               this.setState({
                 products: arr
