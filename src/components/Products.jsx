@@ -12,7 +12,7 @@ class Partners extends React.Component {
     super(props);
 
     this.state = {
-      products: [0]
+      products: []
     }
   }
 

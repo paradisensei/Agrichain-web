@@ -1,6 +1,6 @@
 const express = require('express'),
       app = express(),
-      port = process.env.PORT || 3001;
+      port = process.env.PORT || 3000;
 
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
