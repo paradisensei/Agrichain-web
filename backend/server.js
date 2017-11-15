@@ -7,7 +7,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 
 const ipfsAPI = require('ipfs-api');
-const ipfs = ipfsAPI('/ip4/104.27.145.69/tcp/5001');
+const ipfs = ipfsAPI('/ip4/127.0.0.1/tcp/5001');
 
 const Web3 = require('web3');
 
