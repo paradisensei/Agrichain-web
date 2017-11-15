@@ -6,7 +6,7 @@ build:
 	docker build -t h4c-express .
 
 start:
-	docker run -p 80:3025 --name h4cexpress h4c-express
+	docker run -p 80:3025 -p 5001:5001 --name h4cexpress h4c-express
 
 stop:
 	docker stop h4cexpress
