@@ -79,9 +79,11 @@ class Layout extends React.Component {
               <IconButton className={classes.menuButton} color="contrast" aria-label="Menu" onClick={this._toggleDrawer}>
                 <MenuIcon />
               </IconButton>
-              <Typography type="title" color="inherit" className={classes.flex}>
-                Agrichain
-              </Typography>
+              <div style={{width: '100%'}}>
+                <img
+                  src="http://res.cloudinary.com/vonpix-srl/image/upload/c_scale,h_35/v1510725498/x_Agrichain-Mixed_o6yy0z.png"
+                  alt="Agrichain" />
+              </div>
               <div>
                 <IconButton aria-haspopup="true" color="contrast">
                   <AccountCircle />

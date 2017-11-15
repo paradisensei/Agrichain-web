@@ -5,6 +5,7 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Grid from 'material-ui/Grid';
 import Typography from 'material-ui/Typography';
 
+import ProductCard from './ProductCard';
 
 class GoogleMap extends React.Component {
 
@@ -12,7 +13,13 @@ class GoogleMap extends React.Component {
     super(props);
 
     this.state = {
-      products: [],
+      product: {
+        title: 'Product title',
+        description: 'Product description',
+        image: 'http://res.cloudinary.com/vonpix-srl/image/upload/c_scale,h_100/v1510725141/x_Agrichain-Original_ase5vc.png',
+        price: ' - ', quantity: '- kg', timestamp: '',
+        lat: 0, lng: 0
+      },
       currentLocation: {
         lat: 0,
         lng: 0
@@ -35,22 +42,23 @@ class GoogleMap extends React.Component {
         contract.methods.getProductsCount(f).call((e, count) => {
           for (let i = 0; i < count; i++) {
             contract.methods.products(f, i).call((e, product) => {
-              const arr = this.state.products.slice();
+              // TODO - FIND A NODE!
+              // const arr = this.state.products.slice();
               // concatenate base & decimal coordinate's parts
-              const latitude = product[2] + '.' + product[3];
-              const longitude = product[4] + '.' + product[5];
-              arr.push({
-                title: product[0],
-                image: 'https://ipfs.io/ipfs/' + product[1],
-                latitude: latitude,
-                longitude: longitude,
-                price: product[6],
-                quantity: product[7],
-                timestamp: product[8]
-              });
-              this.setState({
-                products: arr
-              });
+              // const latitude = product[2] + '.' + product[3];
+              // const longitude = product[4] + '.' + product[5];
+              // arr.push({
+              //   title: product[0],
+              //   image: 'https://ipfs.io/ipfs/' + product[1],
+              //   latitude: latitude,
+              //   longitude: longitude,
+              //   price: product[6],
+              //   quantity: product[7],
+              //   timestamp: product[8]
+              // });
+              // this.setState({
+              //   products: arr
+              // });
             })
           }
         })
@@ -74,15 +82,24 @@ class GoogleMap extends React.Component {
   }
 
   render() {
+    let cardDetails = this.state.product;
+    cardDetails['grid'] = {xs: 12, sm: 12, lg: 12};
+    cardDetails['hideMap'] = true;
+
     return (
       <Grid container spacing={24}>
         <Grid item xs={12}>
+          <div className="main-title">
+            <Typography type="display2" gutterBottom>
+              {this.state.product.title}
+            </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <ProductCard details={cardDetails}/>
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <div ref='map'>
-            <div className="main-title">
-              <Typography type="display2" gutterBottom>
-                Local Goods Near Me
-              </Typography>
-            </div>
             <Map google={this.props.google}
                  center={{
                    lat: this.state.currentLocation.lat,
@@ -92,29 +109,21 @@ class GoogleMap extends React.Component {
                  style={{width: '100%', position: 'relative', height: '500px'}}
                  className={'map'}>
               {this.state.userPosition &&
-                <Marker
-                  icon={{
-                    url: 'https://lh3.googleusercontent.com/5OM8W6oF0NdKd_8aEKlpSybDejudy-AFsxT6E3p_Acb9iLNCrdQXwhXwJhsNcVAJNhs=w300',
-                    scaledSize: {height: 20, width: 20}
-                  }}
-                  position={{lat: this.state.currentLocation.lat, lng: this.state.currentLocation.lng}} />
+              <Marker
+                icon={{
+                  url: 'https://lh3.googleusercontent.com/5OM8W6oF0NdKd_8aEKlpSybDejudy-AFsxT6E3p_Acb9iLNCrdQXwhXwJhsNcVAJNhs=w300',
+                  scaledSize: {height: 20, width: 20}
+                }}
+                position={{lat: this.state.currentLocation.lat, lng: this.state.currentLocation.lng}} />
               }
-              {
-                this.state.products.map(x => {
-                  return (
-                    <Marker
-                      key={x.id}
-                      title={x.title}
-                      name={x.title}
-                      icon={{
-                        url: "http://res.cloudinary.com/vonpix-srl/image/upload/c_scale,h_40/v1510725141/x_Agrichain-Cropped_ni6v3q.png",
-                        scaledSize: {height: 40, width: 40}
-                      }}
-                      position={{lat: x.latitude, lng: x.longitude}}
-                      onClick={() => {window.location='/product'}} />
-                  );
-                })
-              }
+              <Marker
+                title={this.state.product.title}
+                name={this.state.product.title}
+                icon={{
+                  url: "http://res.cloudinary.com/vonpix-srl/image/upload/c_scale,h_40/v1510725141/x_Agrichain-Cropped_ni6v3q.png",
+                  scaledSize: {height: 40, width: 40}
+                }}
+                position={{lat: this.state.product.lat, lng: this.state.product.lng}}/>
             </Map>
           </div>
         </Grid>
