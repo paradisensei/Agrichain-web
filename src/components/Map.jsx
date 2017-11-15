@@ -103,7 +103,7 @@ class GoogleMap extends React.Component {
                 this.state.products.map(x => {
                   return (
                     <Marker
-                      key={x.id}
+                      key={x.timestamp}
                       title={x.title}
                       name={x.title}
                       icon={{

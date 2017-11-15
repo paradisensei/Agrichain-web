@@ -81,6 +81,7 @@ class Layout extends React.Component {
               </IconButton>
               <div style={{width: '100%'}}>
                 <img
+                  onClick={() => window.location='/'} style={{cursor: 'pointer'}}
                   src="http://res.cloudinary.com/vonpix-srl/image/upload/c_scale,h_35/v1510725498/x_Agrichain-Mixed_o6yy0z.png"
                   alt="Agrichain" />
               </div>
