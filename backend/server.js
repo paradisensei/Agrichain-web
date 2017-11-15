@@ -4,14 +4,16 @@ const express = require('express'),
 
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
+const bodyParser = require('body-parser');
 
 const ipfsAPI = require('ipfs-api');
-const ipfs = ipfsAPI('/ip4/127.0.0.1/tcp/5001');
+const ipfs = ipfsAPI('/ip4/104.27.145.69/tcp/5001');
 
-import Web3 from 'web3';
+const Web3 = require('web3');
 
 // default options
 app.use(fileUpload());
+app.use(bodyParser.json());
 
 app.post('/upload', function (req, res) {
   if (!req.files)
@@ -19,10 +21,10 @@ app.post('/upload', function (req, res) {
 
   // The name of the input field (i.e. "file") is used to retrieve the uploaded file
   const image = req.files.file;
-  console.log(image);
+  //console.log(image);
 
   const something = req.files.something;
-  console.log(something);
+  //console.log(something);
 
   // save image to IPFS $ receive its hash in return
   ipfs.files.add(image.data, function(err, files) {
@@ -36,8 +38,7 @@ app.post('/upload', function (req, res) {
 });
 
 app.post('/upload2', function (req, res) {
-  if (!req.files)
-    return res.status(400).send('No files were uploaded.');
+  req = req.body;
 
   const web3 = new Web3('https://ropsten.infura.io/k3UcFEukZlu59yyXhUQo');
 
@@ -47,12 +48,13 @@ app.post('/upload2', function (req, res) {
 
   // save product's info to blockchain
   const data = contract.methods.newProduct(
-    req.title, req.image,
+    req.title, req.imageHash,
     req.latitudeBase, req.latitudeDec, req.longitudeBase, req.longitudeDec,
     req.price, req.quantity
   ).encodeABI();
 
   const account = web3.eth.accounts.privateKeyToAccount(req.key);
+  console.log('account', account);
   account.signTransaction({
     to: contractInfo.address,
     gasLimit: 1000000,

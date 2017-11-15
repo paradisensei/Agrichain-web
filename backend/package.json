@@ -12,6 +12,7 @@
     "nodemon": "^1.12.1"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-fileupload": "^0.3.0",
     "ipfs-api": "^15.1.0"
