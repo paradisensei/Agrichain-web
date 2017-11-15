@@ -17,15 +17,35 @@ app.post('/upload', function (req, res) {
 
   // The name of the input field (i.e. "file") is used to retrieve the uploaded file
   const image = req.files.file;
+  console.log(image);
+
+  const something = req.files.something;
+  console.log(something);
 
   // save image to IPFS $ receive its hash in return
   ipfs.files.add(image.data, function(err, files) {
     if (err)
       return res.status(500).send(err);
 
+    // TODO: put to the blockchain
     const hash = files[0].hash;
     res.send(hash);
   });
 });
+
+app.post('/upload2', function (req, res) {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+
+  // The name of the input field (i.e. "file") is used to retrieve the uploaded file
+  const info = req.files.file;
+  // TODO: put to the blockchain
+  console.log(info);
+
+  if (err)
+    return res.status(500).send(err);
+  res.send("SUCCESS");
+});
+
 
 app.listen(port);
