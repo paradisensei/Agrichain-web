@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
 
+import Layout from '../components/Layout.jsx'
+
 const Main = ({ classes, children }) => (
-  <div className={classes.main}>
+  <Layout className={classes.main}>
     {children}
-  </div>
+  </Layout>
 );
 
 Main.propTypes = {

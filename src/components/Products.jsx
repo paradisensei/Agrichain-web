@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
 import ProductCard from './ProductCard.jsx'
 
 
@@ -53,12 +54,16 @@ class Partners extends React.Component {
   }
 
   render() {
-    let products;
+    let products = "";
 
     if (this.state.products.length > 0) {
       products = (
         <div style={{width: '100%'}}>
-          <h3>Organic products:</h3>
+          <div className="main-title">
+            <Typography type="display2" gutterBottom>
+              Local Goods
+            </Typography>
+          </div>
           <Grid container spacing={24}>
             {
               this.state.products.map((p, i) =>
@@ -71,7 +76,7 @@ class Partners extends React.Component {
     }
 
     return (
-      <div style={{width: '100%'}}>
+      <div>
         {products}
       </div>
     );
