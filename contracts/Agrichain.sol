@@ -5,16 +5,18 @@ contract Agrichain {
 
     /*
         @param image     - hash of image in IPFS
-        @param latitude  - coordinate 1
-        @param longitude - coordinate 2
+        @param latitude  - coordinate 1 (base and dec parts)
+        @param longitude - coordinate 2 (base and dec parts)
         @param price     - price set for the product
         @param timestamp - the exact time of product submission
     */
     struct Product {
         string title;
         string image;
-        uint latitude;
-        uint longitude;
+        uint latitudeBase;
+        uint latitudeDec;
+        uint longitudeBase;
+        uint longitudeDec;
         uint price;
         uint quantity;
         uint timestamp;
@@ -43,8 +45,8 @@ contract Agrichain {
     function newProduct(
         string title,
         string image,
-        uint latitude,
-        uint longitude,
+        uint latitudeBase, uint latitudeDec,
+        uint longitudeBase, uint longitudeDec,
         uint price,
         uint quantity
     )
@@ -55,8 +57,8 @@ contract Agrichain {
         Product memory product = Product({
             title: title,
             image: image,
-            latitude: latitude,
-            longitude: longitude,
+            latitudeBase: latitudeBase, latitudeDec: latitudeDec,
+            longitudeBase: longitudeBase, longitudeDec: longitudeDec,
             price: price,
             quantity: quantity,
             timestamp: now

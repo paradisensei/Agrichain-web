@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "concurrently": "^3.5.0",
     "crypto-js": "^3.1.9-1",
     "google-maps-react": "^1.1.2",
     "ipfs-api": "^15.0.1",
@@ -27,7 +28,7 @@
     "prop-types": "^15.6.0"
   },
   "scripts": {
-    "start": "NODE_PATH=src/ react-scripts start",
+    "start": "concurrently \"NODE_PATH=src/ react-scripts start\" \"NODE_PATH=backend/ node backend/server.js\"",
     "build": "NODE_PATH=src/ react-scripts build",
     "test": "NODE_PATH=src/ react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Grid from 'material-ui/Grid';
+import Typography from 'material-ui/Typography';
 import ProductCard from './ProductCard.jsx'
 
 
@@ -11,12 +12,12 @@ class Partners extends React.Component {
     super(props);
 
     this.state = {
-      products: []
+      products: [0]
     }
   }
 
   componentWillMount() {
-    const { web3, ipfs } = this.props;
+    const { web3 } = this.props;
 
     // Instantiate contract once web3 is provided.
     const contractInfo = require('../properties/AgrichainInfo.json');
@@ -30,15 +31,17 @@ class Partners extends React.Component {
           for (let i = 0; i < count; i++) {
             contract.methods.products(f, i).call((e, product) => {
               const arr = this.state.products.slice();
-              //TODO convert coordinates to real addresses using maps API
+              // concatenate base & decimal coordinate's parts
+              const latitude = product[2] + '.' + product[3];
+              const longitude = product[4] + '.' + product[5];
               arr.push({
                 title: product[0],
                 image: 'https://ipfs.io/ipfs/' + product[1],
-                latitude: product[2],
-                longitude: product[3],
-                price: product[3],
-                quantity: product[4],
-                timestamp: product[5]
+                latitude: latitude,
+                longitude: longitude,
+                price: product[6],
+                quantity: product[7],
+                timestamp: product[8]
               });
               this.setState({
                 products: arr
@@ -51,12 +54,16 @@ class Partners extends React.Component {
   }
 
   render() {
-    let products;
+    let products = "";
 
     if (this.state.products.length > 0) {
       products = (
         <div style={{width: '100%'}}>
-          <h3>Organic products:</h3>
+          <div className="main-title">
+            <Typography type="display2" gutterBottom>
+              Local Goods
+            </Typography>
+          </div>
           <Grid container spacing={24}>
             {
               this.state.products.map((p, i) =>
@@ -69,7 +76,7 @@ class Partners extends React.Component {
     }
 
     return (
-      <div style={{width: '100%'}}>
+      <div>
         {products}
       </div>
     );
@@ -77,8 +84,7 @@ class Partners extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  web3: state.web3.instance,
-  ipfs: state.ipfs.api
+  web3: state.web3.instance
 });
 
 export default connect(mapStateToProps)(Partners);

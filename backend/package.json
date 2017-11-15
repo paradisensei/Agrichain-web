@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-fileupload": "^0.3.0",
+    "ipfs-api": "^15.1.0"
+  }
+}
